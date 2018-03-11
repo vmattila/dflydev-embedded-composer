@@ -161,10 +161,11 @@ class EmbeddedComposerBuilder
             $externalVendorDirectory = $externalComposerConfig->get('vendor-dir');
         }
 
-        if (0 !== strpos($externalVendorDirectory, '/')) {
-            $externalVendorDirectory = $this->externalRootDirectory.'/'.$externalVendorDirectory;
+        if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
+            if (0 !== strpos($externalVendorDirectory, '/')) {
+                $externalVendorDirectory = $this->externalRootDirectory . '/' . $externalVendorDirectory;
+            }
         }
-
 
         //
         // External Repository
